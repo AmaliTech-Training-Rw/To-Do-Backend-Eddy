@@ -16,6 +16,7 @@ const login = async (req, res) => {
         const expectedHash = (0, helpers_1.authentication)(user.Authentication.salt, password);
         if (user.Authentication.password != expectedHash) {
             res.status(403).send({ message: "invalid credintials" });
+
         }
         const salt = (0, helpers_1.random)();
         user.Authentication.sessiontoken = (0, helpers_1.authentication)(salt, user._id.toString());
