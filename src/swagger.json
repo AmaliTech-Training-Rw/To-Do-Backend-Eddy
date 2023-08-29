@@ -1,0 +1,82 @@
+
+{
+    "openapi": "3.0.0",
+    "info": {
+      "version": "1.0.0",
+      "title": "Quiz App documentation",
+      "description": "API endpoints for Quiz app"
+    },
+    "paths": {
+      "/auth/login": {
+        "post": {
+          "summary": "User login",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "email": { "type": "string" },
+                    "password": { "type": "string" }
+                  },
+                  "required": ["email", "password"]
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Successful login",
+              "content": {
+                "application/json": {
+                  "example": { "token": "your_token_here" }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/auth/register": {
+        "post": {
+          "summary": "User registration",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "username": { "type": "string" },
+                    "email": { "type": "string" },
+                    "password": { "type": "string" }
+                  },
+                  "required": ["username", "email","password"]
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "User registered successfully"
+            }
+          }
+        }
+      },
+      "/auth/logout": {
+        "post": {
+          "summary": "User logout",
+          "properties": {
+            "email": { "type": "string" },
+            "password": { "type": "string" }
+          },
+          "responses": {
+            "200": {
+              "description": "Successful logout"
+            }
+          }
+        }
+      }
+    }
+  }
+  

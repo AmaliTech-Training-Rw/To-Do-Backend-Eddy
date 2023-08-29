@@ -7,8 +7,33 @@ import compression from 'compression';
 import mongoose from 'mongoose'
 import router from './router';
 import dotenv from 'dotenv';
+import swaggerUi from 'swagger-ui-express';
+import swaggerDocs from './swagger.json'
+
+
+
+
+const options ={
+    definition:{
+        openapi:"3.0.0",
+        info:{
+            title:"library API",
+            version:"1.0.0",
+            description:"Quiz App"
+        },
+        server:[
+            {
+                url: "http://localhost:5500/"
+            }
+        ],
+    },
+    apis:["./router/*.ts"]
+}
 
 const app = express();
+
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs))
+
 dotenv.config();
 
 app.use(cors({
